@@ -1,5 +1,7 @@
-# Gradient Descent is an optimization algorithm for
-# finding a local minimum of a differentiable function.
+"""
+Gradient Descent is an optimization algorithm for
+finding a local minimum of a differentiable function.
+"""
 
 def stochastic_descend(x, y, w, b, lr):
 
@@ -33,11 +35,14 @@ def stochastic_descend(x, y, w, b, lr):
     output: (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
     """
     for xi, yi in zip(x,y):
-        # Loss function to differentiate (MSE for a single observation | n=1): (1/1)(y - yhat)^2 or simply (y - yhat)^2
-        # where yhat is wx + b | final function to differentiate: (y - (wx + b))^2
-
-        # Derivative of the loss function with respect to weight | use chain rule
         """
+        Loss function to differentiate (MSE for a single observation | n=1): (1/1)(y - yhat)^2 or simply (y - yhat)^2
+        where yhat is wx + b | final function to differentiate: (y - (wx + b))^2
+        """
+
+        """
+        Derivative of the loss function with respect to weight | use chain rule
+        
         d/dw (y - (wx + b))^2
         d/db 2(y - (wx + b))(y - (wx + b))
         d/dw 2(y - (wx + b))(y - wx - b) | since y and b are treated as constants, their derivative is 0
@@ -47,8 +52,9 @@ def stochastic_descend(x, y, w, b, lr):
         """
         derivativeWeight += -2 * xi * (yi - (w * xi + b))
 
-        # Derivative of the loss function with respect to bias | use chain rule
         """
+        Derivative of the loss function with respect to bias | use chain rule
+        
         d/db (y - (wx + b))^2
         d/db 2(y - (wx + b))(y - (wx + b))
         d/db 2(y - (wx + b))(y - wx - b) | since y and wx are treated as constants, their derivative is 0
@@ -59,10 +65,12 @@ def stochastic_descend(x, y, w, b, lr):
         derivativeBias += -2 * (yi - (w * xi + b))
 
         # Add all the outputs of the derived functions to the variables we declared earlier
-    
-    # This is where we take a 'step' or update the parameters 'w' (weight) and 'b' (bias)
-    # using the learning rate, 'N' or the amount of data, and the calculated derivative outputs
-    # Gradient descent update formula: parameter - alpha(learning rate) * vector of partial derivatives of a loss function
+
+    """
+    This is where we take a 'step' or update the parameters 'w' (weight) and 'b' (bias)
+    using the learning rate, 'N' or the amount of data, and the calculated derivative outputs
+    Gradient descent update formula: parameter - alpha(learning rate) * vector of partial derivatives of a loss function
+    """
     w = w - lr * derivativeWeight
     b = b - lr * derivativeBias
 
@@ -103,11 +111,13 @@ def batch_descend(x, y, w, b, lr):
     output: (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
     """
     for xi, yi in zip(x,y):
-        # Loss function to differentiate (MSE for the whole observation | n = amount of passed): (1/N)(y - yhat)^2
-        # where yhat is wx + b | final function to differentiate: (1/N)(y - (wx + b))^2
-
-        # Derivative of the loss function with respect to weight | use chain rule
         """
+        Loss function to differentiate (MSE for the whole observation | n = amount of passed): (1/N)(y - yhat)^2
+        where yhat is wx + b | final function to differentiate: (1/N)(y - (wx + b))^2
+        """
+
+        """
+        # Derivative of the loss function with respect to weight | use chain rule
         d/dw (1/n)(y - (wx + b))^2
         Rule: d/dx (a * f) = a * d/dx (f)
         (1/n) d/dw 2(y - (wx + b))(y - (wx + b))
@@ -120,8 +130,8 @@ def batch_descend(x, y, w, b, lr):
         """
         derivativeWeight += (-2 / N) * xi * (yi - (w * xi + b))
 
-        # Derivative of the loss function with respect to bias | use chain rule
         """
+        Derivative of the loss function with respect to bias | use chain rule
         d/db (1/n)(y - (wx + b))^2
         Rule: d/dx (a * f) = a * d/dx (f)
         (1/n) d/dw 2(y - (wx + b))(y - (wx + b))
@@ -134,10 +144,12 @@ def batch_descend(x, y, w, b, lr):
         derivativeBias += (-2 / N) * (yi - (w * xi + b))
 
         # Add all the outputs of the derived functions to the variables we declared earlier
-    
-    # This is where we take a 'step' or update the parameters 'w' (weight) and 'b' (bias)
-    # using the learning rate, 'N' or the amount of data, and the calculated derivative outputs
-    # Gradient descent update formula: parameter - alpha(learning rate) * vector of partial derivatives of a loss function
+
+    """
+    This is where we take a 'step' or update the parameters 'w' (weight) and 'b' (bias)
+    using the learning rate, 'N' or the amount of data, and the calculated derivative outputs
+    Gradient descent update formula: parameter - alpha(learning rate) * vector of partial derivatives of a loss function
+    """
     w = w - lr * derivativeWeight
     b = b - lr * derivativeBias
 
