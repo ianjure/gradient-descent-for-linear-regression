@@ -117,7 +117,8 @@ def batch_descend(x, y, w, b, lr):
         """
 
         """
-        # Derivative of the loss function with respect to weight | use chain rule
+        Derivative of the loss function with respect to weight | use chain rule
+        
         d/dw (1/n)(y - (wx + b))^2
         Rule: d/dx (a * f) = a * d/dx (f)
         (1/n) d/dw 2(y - (wx + b))(y - (wx + b))
@@ -132,6 +133,7 @@ def batch_descend(x, y, w, b, lr):
 
         """
         Derivative of the loss function with respect to bias | use chain rule
+        
         d/db (1/n)(y - (wx + b))^2
         Rule: d/dx (a * f) = a * d/dx (f)
         (1/n) d/dw 2(y - (wx + b))(y - (wx + b))
